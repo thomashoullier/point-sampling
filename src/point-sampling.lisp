@@ -3,30 +3,29 @@
 
 (defclass point-sampling ()
   ((points :documentation "Vector of points."
-           :accessor points :initarg :points)))
+           :accessor points :initarg :points
+           :type (vector point))))
 
 ;;TODO: export #:points
 
 ;;; Instantiators
 (defun make-point-sampling-empty ()
   "Create an empty point-sampling instance."
-
-  )
+  (make-instance 'point-sampling
+                 :points (make-array 0 :fill-pointer 0 :element-type 'point)))
 
 (defun make-point-sampling-frompoints (points)
   "Create a point-sampling instance filled with the vector of points."
-
-  )
+  (make-instance 'point-sampling :points points))
 
 (defun make-point-sampling-fromtable (points)
   "Create a point-sampling instance from a vector of points coordinates."
+  (let ((points-vec (map 'vector #'make-point-coords points)))
+    (make-instance 'point-sampling :points points-vec)))
 
-  )
-
-(defmethod ps-cpy ((ps point-sampling))
-  "Return a copy of the point-sampling instance."
-
-  )
+(defmethod ps-deepcpy ((ps point-sampling))
+  "Return a deep copy of the point-sampling instance."
+  (make-instance 'point-sampling :points (map 'vector #'p-cpy (points ps))))
 
 ;;; Printer
 (defmethod print-object ((obj point-sampling) stream)
@@ -45,6 +44,27 @@
 
 (defmethod (setf ps-ref) ((new-point point) (ps point-sampling))
   "Setf a point in point-sampling."
+
+  )
+
+(defmethod ps-push ((ps point-sampling) new-point)
+  "Push a new point to the point-sampling instance."
+
+  )
+
+(defmethod ps-pop ((ps point-sampling))
+  "Pop the last point from the point-sampling."
+
+  )
+
+;;; Find and remove duplicates
+(defmethod find-duplicates ((ps point-sampling))
+  "Find duplicate points."
+
+  )
+
+(defmethod remove-duplicates ((ps point-sampling))
+  "Remove duplicate points."
 
   )
 

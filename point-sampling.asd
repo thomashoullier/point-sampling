@@ -1,7 +1,7 @@
 (defsystem point-sampling
   :name "point-sampling"
   :author "Thomas HOULLIER"
-  :depends-on ("point")
+  :depends-on ("point" "alexandria")
   :components
   ((:module "src"
     :components ((:file "package")
