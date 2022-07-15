@@ -6,6 +6,10 @@
            :accessor points :initarg :points
            :type (vector point))))
 
+(defmethod ps-n ((ps point-sampling))
+  "Return the number of points in the sampling"
+  (length (points ps)))
+
 ;;; Instantiators
 (defun make-point-sampling-empty ()
   "Create an empty point-sampling instance."
@@ -24,10 +28,6 @@
          (points-vec (map-into (make-array n :fill-pointer n)
                                #'make-point-coords points)))
     (make-instance 'point-sampling :points points-vec)))
-
-(defmethod ps-n ((ps point-sampling))
-  "Return the number of points in the sampling"
-  (length (points ps)))
 
 (defmethod ps-deepcpy ((ps point-sampling))
   "Return a deep copy of the point-sampling instance."
@@ -54,18 +54,8 @@
 
 (defmethod ps-ref ((ps point-sampling) index)
   "Access a point in the point-sampling."
+  (aref (points ps) index))
 
-  )
-
-;; TODO: try something like (setf (px (ps-ref ps 0)) 1.5d0)
-
-(defmethod (setf ps-ref) ((new-point point) (ps point-sampling))
+(defmethod (setf ps-ref) ((new-point point) (ps point-sampling) index)
   "Setf a point in point-sampling."
-
-  )
-
-;;; Predicates
-(defmethod ps-eq ((ps1 point-sampling) (ps2 point-sampling))
-  "Equality predicate between two point-sampling instances."
-
-  )
+  (setf (aref (points ps) index) new-point))

@@ -5,4 +5,5 @@
   :components
   ((:module "src"
     :components ((:file "package")
-                 (:file "point-sampling" :depends-on ("package"))))))
+                 (:file "point-sampling" :depends-on ("package"))
+                 (:file "equality" :depends-on ("package"))))))
