@@ -8,3 +8,9 @@ class.
 
 ## Dependencies
 
+## Further work
+The following features would be useful:
+* Find duplicates, and remove duplicates (note CL implements
+  `#'remove-duplicates`).
+
+

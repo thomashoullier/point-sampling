@@ -6,8 +6,6 @@
            :accessor points :initarg :points
            :type (vector point))))
 
-;;TODO: export #:points
-
 ;;; Instantiators
 (defun make-point-sampling-empty ()
   "Create an empty point-sampling instance."
@@ -16,16 +14,27 @@
 
 (defun make-point-sampling-frompoints (points)
   "Create a point-sampling instance filled with the vector of points."
-  (make-instance 'point-sampling :points points))
+  (make-instance 'point-sampling
+                 :points (alexandria:copy-array
+                          points :fill-pointer (length points))))
 
 (defun make-point-sampling-fromtable (points)
   "Create a point-sampling instance from a vector of points coordinates."
-  (let ((points-vec (map 'vector #'make-point-coords points)))
+  (let* ((n (length points))
+         (points-vec (map-into (make-array n :fill-pointer n)
+                               #'make-point-coords points)))
     (make-instance 'point-sampling :points points-vec)))
+
+(defmethod ps-n ((ps point-sampling))
+  "Return the number of points in the sampling"
+  (length (points ps)))
 
 (defmethod ps-deepcpy ((ps point-sampling))
   "Return a deep copy of the point-sampling instance."
-  (make-instance 'point-sampling :points (map 'vector #'p-cpy (points ps))))
+  (let ((n (ps-n ps)))
+    (make-instance 'point-sampling
+                   :points (map-into (make-array n :fill-pointer n)
+                                     #'p-cpy (points ps)))))
 
 ;;; Printer
 (defmethod print-object ((obj point-sampling) stream)
@@ -35,36 +44,23 @@
       (format stream "~A" points))))
 
 ;;; Point access
+(defmethod ps-push (new-point (ps point-sampling))
+  "Push a new point to the point-sampling instance."
+  (vector-push-extend new-point (points ps)))
+
+(defmethod ps-pop ((ps point-sampling))
+  "Pop the last point from the point-sampling."
+  (vector-pop (points ps)))
+
 (defmethod ps-ref ((ps point-sampling) index)
   "Access a point in the point-sampling."
 
   )
 
-;; TODO: try something like (setf (px (aref ps 0)) 1.5d0)
+;; TODO: try something like (setf (px (ps-ref ps 0)) 1.5d0)
 
 (defmethod (setf ps-ref) ((new-point point) (ps point-sampling))
   "Setf a point in point-sampling."
-
-  )
-
-(defmethod ps-push ((ps point-sampling) new-point)
-  "Push a new point to the point-sampling instance."
-
-  )
-
-(defmethod ps-pop ((ps point-sampling))
-  "Pop the last point from the point-sampling."
-
-  )
-
-;;; Find and remove duplicates
-(defmethod find-duplicates ((ps point-sampling))
-  "Find duplicate points."
-
-  )
-
-(defmethod remove-duplicates ((ps point-sampling))
-  "Remove duplicate points."
 
   )
 
