@@ -53,6 +53,7 @@ Return a deep copy (with all points copied) of a point-sampling.
 
 ### Point push, pop and access
 **ps-push** new-point point-sampling => new-index-p
+
 **ps-pop** new-point point-sampling => point
 
 `vector-push-extend` and `vector-pop` the vector of points.
