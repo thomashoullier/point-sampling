@@ -110,6 +110,24 @@ an usual set equality since duplicates are included.
 (ps-eq *ps1* *ps4*) ;=> nil
 ```
 
+### Export to csv
+**ps-tocsv-file** point-sampling filespec
+
+Export the point-sampling to a csv file. The order of points is preserved.
+The main goal is to have
+
+```common-lisp
+(defparameter *ps1* (make-point-sampling-fromtable #(#(1 2) #(3 4))))
+(ps-tocsv-file *ps1* "/tmp/ps.csv")
+```
+
+The file looks like this:
+
+```text
+1.0000000000000000e+0 , 2.0000000000000000e+0
+3.0000000000000000e+0 , 4.0000000000000000e+0
+```
+
 ## Dependencies
 * [point](https://github.com/thomashoullier/point)
 * [alexandria](https://gitlab.common-lisp.net/alexandria/alexandria)
