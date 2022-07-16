@@ -12,7 +12,7 @@
 
 (defsystem point-sampling/test
   :name "point-sampling/test"
-  :depends-on ("point-sampling" "rove")
+  :depends-on ("point-sampling" "rove" "cl-fad")
   :components
   ((:module "test"
     :components ((:file "package")

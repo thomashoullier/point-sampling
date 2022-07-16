@@ -30,4 +30,11 @@
         (ps4 (make-point-sampling-fromtable #(#(1 2) #(3 5)))))
     (testing "Equality predicate"
       (ok (and (ps-eq ps1 ps2) (not (ps-eq ps1 ps3)) (not (ps-eq ps1 ps4)))
-          "ps-eq"))))
+          "ps-eq")))
+  (let ((ps (make-point-sampling-empty))
+        (npoints 100)
+        (tmp-filename (cl-fad:with-output-to-temporary-file (foo))))
+    (dotimes (it npoints t)
+      (ps-push (make-point (random 1d0) (random 1d0)) ps))
+    (testing "Writing to file"
+      (ps-tocsv-file ps tmp-filename) (pass "pass"))))

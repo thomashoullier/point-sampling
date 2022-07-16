@@ -120,4 +120,5 @@ The following features would be useful:
 * Find duplicates, and remove duplicates (note CL implements
   `#'remove-duplicates`).
 * The equality predicate could be made more efficient with caching?
-
+* Export to a binary data file readable by gnuplot. The file sizes would be
+  smaller and numerical accuracy preserved.
