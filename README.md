@@ -128,6 +128,13 @@ The file looks like this:
 3.0000000000000000e+0 , 4.0000000000000000e+0
 ```
 
+## Plotting with gnuplot
+The exported csv file may readily be plotted using gnuplot.
+You may start from the script included in the `doc/` folder of the present
+repository. The included example produces the following plot.
+
+![example-gnuplot](doc/ps.png)
+
 ## Dependencies
 * [point](https://github.com/thomashoullier/point)
 * [alexandria](https://gitlab.common-lisp.net/alexandria/alexandria)
