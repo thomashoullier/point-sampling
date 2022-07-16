@@ -23,4 +23,11 @@
     (testing "Point access"
       (ok (p-eq p1 (ps-ref ps-cpy 0)) "Reading")
       (setf (ps-ref ps-cpy 0) p3)
-      (ok (p-eq p3 (ps-ref ps-cpy 0)) "setf"))))
+      (ok (p-eq p3 (ps-ref ps-cpy 0)) "setf")))
+  (let ((ps1 (make-point-sampling-fromtable #(#(1 2) #(3 4))))
+        (ps2 (make-point-sampling-fromtable #(#(1 2) #(3 4))))
+        (ps3 (make-point-sampling-fromtable #(#(1 2) #(3 4) #(3 4))))
+        (ps4 (make-point-sampling-fromtable #(#(1 2) #(3 5)))))
+    (testing "Equality predicate"
+      (ok (and (ps-eq ps1 ps2) (not (ps-eq ps1 ps3)) (not (ps-eq ps1 ps4)))
+          "ps-eq"))))
