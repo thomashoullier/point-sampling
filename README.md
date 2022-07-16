@@ -1,5 +1,5 @@
 # Point sampling class
-![status](https://raw.githubusercontent.com/thomashoullier/badges/master/status-work-in-progress.svg)
+![status](https://raw.githubusercontent.com/thomashoullier/badges/master/status-maintained.svg)
 
 [![Build Status](https://drone.git-or-miss.com/api/badges/thomashoullier/point-sampling/status.svg)](https://drone.git-or-miss.com/thomashoullier/point-sampling)
 
