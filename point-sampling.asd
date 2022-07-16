@@ -1,7 +1,7 @@
 (defsystem point-sampling
   :name "point-sampling"
   :author "Thomas HOULLIER"
-  :depends-on ("point" "alexandria")
+  :depends-on ("point" "alexandria" "cl-custom-hash-table")
   :components
   ((:module "src"
     :components ((:file "package")
