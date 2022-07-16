@@ -1,4 +1,10 @@
 # Point sampling class
+![status](https://raw.githubusercontent.com/thomashoullier/badges/master/status-work-in-progress.svg)
+
+[![Build Status](https://drone.git-or-miss.com/api/badges/thomashoullier/point-sampling/status.svg)](https://drone.git-or-miss.com/thomashoullier/point-sampling)
+
+[![Coverage Status](https://coveralls.io/repos/github/thomashoullier/point-sampling/badge.svg?branch=master)](https://coveralls.io/github/thomashoullier/point-sampling?branch=master)
+
 The system `point-sampling` implements a class to represent samplings of `point`
 elements.
 It is built on top of the [point](https://github.com/thomashoullier/point)
