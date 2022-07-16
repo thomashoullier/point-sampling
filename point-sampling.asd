@@ -6,7 +6,8 @@
   ((:module "src"
     :components ((:file "package")
                  (:file "point-sampling" :depends-on ("package"))
-                 (:file "equality" :depends-on ("package")))))
+                 (:file "equality" :depends-on ("point-sampling"))
+                 (:file "tocsv-file" :depends-on ("point-sampling")))))
   :in-order-to ((test-op (test-op "point-sampling/test"))))
 
 (defsystem point-sampling/test

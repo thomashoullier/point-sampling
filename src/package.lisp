@@ -5,4 +5,5 @@
            #:make-point-sampling-empty #:make-point-sampling-frompoints
            #:make-point-sampling-fromtable #:ps-deepcpy
            #:ps-push #:ps-pop #:ps-ref
-           #:ps-eq))
+           #:ps-eq
+           #:ps-tocsv-file))
