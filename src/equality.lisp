@@ -14,16 +14,8 @@
   "Equality predicate between two point-sampling instances."
   ;; We tally the points in two hash tables. Then we check the
   ;; two tables are equal.
-  (let ((hs1 (hash-tally ps1)) (hs2 (hash-tally ps2))
-        (tmp-count 0))
-    ;; TODO: equalp can be used on hash-tables.
-    (with-custom-hash-table
-      (and (= (hash-table-count hs1) (hash-table-count hs2))
-           (loop for key1 being the hash-keys of hs1 using (hash-value val1) do
-             (if (setf tmp-count (gethash key1 hs2))
-                 (when (/= tmp-count val1) (return-from ps-eq nil))
-                 (return-from ps-eq nil))
-                 finally (return T))))))
+  (let ((hs1 (hash-tally ps1)) (hs2 (hash-tally ps2)))
+    (equalp hs1 hs2)))
 
 (defmethod hash-tally ((ps point-sampling))
   "Tally points of a point-sampling into a hash-table of counts."
